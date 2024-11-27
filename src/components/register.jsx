@@ -141,11 +141,9 @@ function Modeal({ closeModalrg, openmodel }) {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="w-full p-6 text-center bg-white rounded-lg shadow-lg md:w-80">
                 <h2 className="mb-4 text-2xl font-bold">Login</h2>
-                {Object.keys(error).length > 0 && (
+                {error && (
                     <div className="p-2 mb-4 text-red-500 bg-red-200 border border-red-600 rounded">
-                        {Object.values(error).map((errMsg, index) => (
-                            <p key={index}>{errMsg}</p>
-                        ))}
+                        <p>{error}</p>
                     </div>
                 )}
                 <input
