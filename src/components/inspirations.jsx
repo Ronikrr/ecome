@@ -60,8 +60,8 @@ const Inspirations = () => {
     <section className="py-5 inspiration">
       <div className="flex flex-col items-center w-full lg:flex-row">
         {imageArray.map((image, index) => (
-          <div key={index} className="w-full lg:w-1/4 xl:w-1/4 lg:even:mt-[200px] ">
-            <div className="w-full first md:h-auto lg:h-[400px]">
+          <div key={index} className="hover: w-full lg:w-1/4 xl:w-1/4 lg:even:mt-[200px] ">
+            <div className="w-full  first md:h-auto lg:h-[400px]">
               <img src={image.src} className="w-full h-full ring ring-white" alt={image.alt} />
             </div>
           </div>

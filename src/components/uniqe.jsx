@@ -27,12 +27,12 @@ const Uniqe = () => {
     return (
         <section className='uniqe' >
             {/* <div className="container mx-auto"> */}
-                <div className="relative flex items-center w-full ">
-                    <div className="relative w-full overflow-hidden rounded-t-full md:w-[30%] md:translate-x-[150px]  z-10 ">
-                        <img src={img} alt="" className='relative' />
-                    </div>
-                    <div className="w-full relative  md:w-[70%] py-[100px] rounded-l-[140px] pl-[200px] pr-[120px] overflow-hidden bg-[#4F282B] text-white">
-                    <div className="container">
+            <div className="relative flex flex-wrap items-center w-full ">
+                <div className="relative w-full overflow-hidden rounded-t-full md:w-[30%] md:translate-x-[150px]  z-10 ">
+                    <img src={img} alt="" className='relative' />
+                </div>
+                <div className="w-full relative  md:w-[70%] md:py-[100px] md:rounded-l-[140px] md:pl-[200px] md:pr-[120px] overflow-hidden bg-[#4F282B] text-white">
+                    <div className="container text-center md:text-left">
                         {/* <div className="w-full h-full p-3 mx-5 md:w-6/12 md:p-0 "> */}
                         <span className="text-xl font-semibold md:text-lg">
                             Leading Brand
@@ -65,7 +65,7 @@ const Uniqe = () => {
                                 </li>
                             ))}
                         </ul>
-                        <div className="flex items-center mt-[60px] space-x-[40px] ">
+                        <div className="flex items-center flex-wrap justify-center mt-[60px] space-x-[40px] ">
 
                             <Link className="px-8 py-2 text-xl capitalize border rounded-full hover:bg-white hover:text-[#4f282b] ">
 
@@ -99,9 +99,9 @@ const Uniqe = () => {
                             </div>
                         </div>
                         {/* </div> */}
-                       </div>
                     </div>
                 </div>
+            </div>
             {/* </div> */}
         </section>
     )
