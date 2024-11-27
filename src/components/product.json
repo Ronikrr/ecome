@@ -1,0 +1,261 @@
+{
+    "cosmetics": [
+        {
+            "category": "Skincare",
+            "products": [
+                {
+                    "id": 1,
+                    "name": "Face Cleanser",
+                    "rating": 4.5,
+                    "price": 12.99,
+                    "img": "https://example.com/images/face-cleanser.jpg",
+                    "description": "Gentle face wash to remove dirt and makeup"
+                },
+                {
+                    "id": 2,
+                    "name": "Exfoliator",
+                    "rating": 4.7,
+                    "price": 14.99,
+                    "img": "https://example.com/images/exfoliator.jpg",
+                    "description": "Facial scrub for deep pore cleansing"
+                },
+                {
+                    "id": 3,
+                    "name": "Toner",
+                    "rating": 4.4,
+                    "price": 10.99,
+                    "img": "https://example.com/images/toner.jpg",
+                    "description": "Balances skin's pH after cleansing"
+                },
+                {
+                    "id": 4,
+                    "name": "Serum",
+                    "rating": 4.8,
+                    "price": 19.99,
+                    "img": "https://example.com/images/serum.jpg",
+                    "description": "Vitamin C serum for brightening skin"
+                },
+                {
+                    "id": 5,
+                    "name": "Moisturizer",
+                    "rating": 4.6,
+                    "price": 15.99,
+                    "img": "https://example.com/images/moisturizer.jpg",
+                    "description": "Hydrating cream for daily use"
+                },
+                {
+                    "id": 6,
+                    "name": "Face Mask",
+                    "rating": 4.5,
+                    "price": 8.99,
+                    "img": "https://example.com/images/face-mask.jpg",
+                    "description": "Clay or sheet masks for deep hydration and glow"
+                },
+                {
+                    "id": 7,
+                    "name": "Eye Cream",
+                    "rating": 4.3,
+                    "price": 12.49,
+                    "img": "https://example.com/images/eye-cream.jpg",
+                    "description": "Reduces puffiness and dark circles"
+                },
+                {
+                    "id": 8,
+                    "name": "Sunscreen",
+                    "rating": 4.7,
+                    "price": 9.99,
+                    "img": "https://example.com/images/sunscreen.jpg",
+                    "description": "Broad-spectrum SPF protection"
+                }
+            ]
+        },
+        {
+            "category": "Makeup",
+            "products": [
+                {
+                    "id": 9,
+                    "name": "Foundation",
+                    "rating": 4.5,
+                    "price": 18.99,
+                    "img": "https://example.com/images/foundation.jpg",
+                    "description": "Liquid foundation for full coverage"
+                },
+                {
+                    "id": 10,
+                    "name": "Concealer",
+                    "rating": 4.4,
+                    "price": 11.99,
+                    "img": "https://example.com/images/concealer.jpg",
+                    "description": "To cover blemishes and dark spots"
+                },
+                {
+                    "id": 11,
+                    "name": "Blush",
+                    "rating": 4.5,
+                    "price": 9.99,
+                    "img": "https://example.com/images/blush.jpg",
+                    "description": "Powder or cream for added cheek color"
+                },
+                {
+                    "id": 12,
+                    "name": "Bronzer",
+                    "rating": 4.6,
+                    "price": 10.99,
+                    "img": "https://example.com/images/bronzer.jpg",
+                    "description": "Adds warmth and definition to face"
+                },
+                {
+                    "id": 13,
+                    "name": "Highlighter",
+                    "rating": 4.7,
+                    "price": 12.99,
+                    "img": "https://example.com/images/highlighter.jpg",
+                    "description": "Shimmer to accentuate high points of face"
+                },
+                {
+                    "id": 14,
+                    "name": "Setting Powder",
+                    "rating": 4.5,
+                    "price": 10.49,
+                    "img": "https://example.com/images/setting-powder.jpg",
+                    "description": "Matte finishing powder"
+                },
+                {
+                    "id": 15,
+                    "name": "Eyeshadow Palette",
+                    "rating": 4.6,
+                    "price": 16.99,
+                    "img": "https://example.com/images/eyeshadow-palette.jpg",
+                    "description": "Various shades for versatile eye looks"
+                },
+                {
+                    "id": 16,
+                    "name": "Eyeliner",
+                    "rating": 4.5,
+                    "price": 7.99,
+                    "img": "https://example.com/images/eyeliner.jpg",
+                    "description": "Defines and enhances the eye shape"
+                },
+                {
+                    "id": 17,
+                    "name": "Mascara",
+                    "rating": 4.6,
+                    "price": 8.99,
+                    "img": "https://example.com/images/mascara.jpg",
+                    "description": "Lengthens and volumizes lashes"
+                },
+                {
+                    "id": 18,
+                    "name": "Lipstick",
+                    "rating": 4.7,
+                    "price": 9.99,
+                    "img": "https://example.com/images/lipstick.jpg",
+                    "description": "Adds color and hydration to lips"
+                },
+                {
+                    "id": 19,
+                    "name": "Lip Gloss",
+                    "rating": 4.4,
+                    "price": 7.49,
+                    "img": "https://example.com/images/lip-gloss.jpg",
+                    "description": "Glossy finish for added shine"
+                }
+            ]
+        },
+        {
+            "category": "Haircare",
+            "products": [
+                {
+                    "id": 20,
+                    "name": "Shampoo",
+                    "rating": 4.6,
+                    "price": 8.99,
+                    "img": "https://example.com/images/shampoo.jpg",
+                    "description": "Cleanses and nourishes hair"
+                },
+                {
+                    "id": 21,
+                    "name": "Conditioner",
+                    "rating": 4.5,
+                    "price": 9.49,
+                    "img": "https://example.com/images/conditioner.jpg",
+                    "description": "Moisturizes and detangles hair"
+                },
+                {
+                    "id": 22,
+                    "name": "Hair Serum",
+                    "rating": 4.7,
+                    "price": 12.99,
+                    "img": "https://example.com/images/hair-serum.jpg",
+                    "description": "Smooths frizz and adds shine"
+                },
+                {
+                    "id": 23,
+                    "name": "Hair Mask",
+                    "rating": 4.6,
+                    "price": 14.99,
+                    "img": "https://example.com/images/hair-mask.jpg",
+                    "description": "Deep conditioning treatment"
+                },
+                {
+                    "id": 24,
+                    "name": "Hair Oil",
+                    "rating": 4.5,
+                    "price": 11.49,
+                    "img": "https://example.com/images/hair-oil.jpg",
+                    "description": "Nourishes and strengthens hair"
+                }
+            ]
+        },
+        {
+            "category": "Nail Care",
+            "products": [
+                {
+                    "id": 25,
+                    "name": "Nail Polish",
+                    "rating": 4.6,
+                    "price": 5.99,
+                    "img": "https://example.com/images/nail-polish.jpg",
+                    "description": "Color for nails in various shades"
+                },
+                {
+                    "id": 26,
+                    "name": "Nail Polish Remover",
+                    "rating": 4.4,
+                    "price": 3.99,
+                    "img": "https://example.com/images/nail-polish-remover.jpg",
+                    "description": "Removes nail polish"
+                },
+                {
+                    "id": 27,
+                    "name": "Nail Strengthener",
+                    "rating": 4.5,
+                    "price": 6.99,
+                    "img": "https://example.com/images/nail-strengthener.jpg",
+                    "description": "Strengthens weak nails"
+                },
+                {
+                    "id": 28,
+                    "name": "Cuticle Oil",
+                    "rating": 4.6,
+                    "price": 4.99,
+                    "img": "https://example.com/images/cuticle-oil.jpg",
+                    "description": "Moisturizes and softens cuticles"
+                }
+            ]
+        },
+        {
+            "category": "Fragrance",
+            "products": [
+                {
+                    "id": 29,
+                    "name": "Perfume",
+                    "rating": 4.7,
+                    "price": 29.99,
+                    "img": "https://example.com/images/perfume.jpg",
+                    "description": "Long-lasting fragrance"
+                }
+            ]
+        }
+    ]
+}
