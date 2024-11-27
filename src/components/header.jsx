@@ -11,6 +11,7 @@ const Header = () => {
     const { cart } = useContext(Cartcontext);
     const { wishlist } = useContext(WishlistContext)
     const [user, setUser] = useState(null);
+    const [activeLink, setActiveLink] = useState('');
     const navigate = useNavigate();
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -33,6 +34,11 @@ const Header = () => {
         return localStorage.getItem('accessToken') ? true : false;
     }
 
+
+    const handleLinkClick = (path) => {
+        setActiveLink(path); // Set the active link
+        scrollToTop(); // Scroll to top on link click
+    };
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -51,7 +57,33 @@ const Header = () => {
     const closeModalrg = () => {
         setopenrgmodel(false)
     }
-
+    const header_link_name = [
+        {
+            id: 1,
+            name: 'home',
+            path: '/'
+        }, {
+            id: 2,
+            name: 'about',
+            path: '/aboutus'
+        }, {
+            id: 3,
+            name: 'blog',
+            path: '/blog'
+        }, {
+            id: 4,
+            name: 'shop',
+            path: '/shop'
+        }, {
+            id: 5,
+            name: 'service',
+            path: '/service'
+        }, {
+            id: 6,
+            name: 'Get in Touch',
+            path: '/contact'
+        }
+    ]
     return (
         <header className="fixed z-50 w-full py-2 bg-white border-b shadow-sm ">
             <div className="container flex items-center justify-between px-4 mx-auto md:px-8">
@@ -80,36 +112,16 @@ const Header = () => {
                         } transition-transform duration-300 ease-in-out md:static md:w-auto md:transform-none md:flex items-center`}
                 >
                     <ul className="flex flex-col items-center mt-10 space-y-5 md:mt-0 md:flex-row md:space-y-0 md:space-x-6">
-                        <li>
-                            <Link to="/" onClick={scrollToTop} className="hover:text-[#4f282b] capitalize">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/aboutus" onClick={scrollToTop} className="hover:text-[#4f282b] capitalize">
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/blog" onClick={scrollToTop} className="hover:text-[#4f282b] capitalize">
-                                Blog
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/shop" onClick={scrollToTop} className="hover:text-[#4f282b] capitalize">
-                                Shop
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/service" onClick={scrollToTop} className="hover:text-[#4f282b] capitalize">
-                                Service
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/contact" onClick={scrollToTop} className="hover:text-[#4f282b] capitalize">
-                                Get in Touch
-                            </Link>
-                        </li>
+                        {header_link_name.map((item, id) => (
+                            <li key={id} >
+                                <Link to={item.path} onClick={() => handleLinkClick(item.path)} className={` mb-2 capitalize transition-colors duration-200 
+                            ${activeLink === item.path ? 'font-bold border-b-2 border-[#4f282b]' : 'text-[#4f282b]'} 
+                            hover:border-b-2 hover:border-[#4f282b]'`}>
+                                    {item.name}
+                                </Link>
+                            </li>
+                        ))}
+
                         <li>
                             <button
                                 className="text-black md:hidden focus:outline-none"
