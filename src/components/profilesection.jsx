@@ -52,6 +52,7 @@ const Profilesection = () => {
         }
     };
     const handleLogout = () => {
+        localStorage.removeItem('accessToken');
         localStorage.removeItem('currentUser');
         setprofile({
             firstname: '',
