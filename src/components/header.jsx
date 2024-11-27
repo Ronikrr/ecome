@@ -24,9 +24,7 @@ const Header = () => {
     useEffect(() => {
         const accessToken = localStorage.getItem("accessToken");
         const storeduserprofile = JSON.parse(localStorage.getItem("currentUser"));
-        if (!accessToken || !storeduserprofile) {
-            navigate("/");
-        }
+
         setUser(storeduserprofile);
 
     }, [navigate]);
