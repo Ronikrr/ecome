@@ -8,7 +8,6 @@ import { Cartcontext } from "./cart/cartcontext";
 import { WishlistContext } from "./wishlist/wishlistcontext";
 import logo from '../assets/img/logo/download__4_-removebg-preview 1.png'
 const Header = () => {
-    const token = localStorage.getItem('accessToken');
     const { cart } = useContext(Cartcontext);
     const { wishlist } = useContext(WishlistContext)
     const [user, setUser] = useState(null);
@@ -22,9 +21,7 @@ const Header = () => {
         console.log("Menu is now", !isExpanded ? "expanded" : "collapsed");
     };
     useEffect(() => {
-        const accessToken = localStorage.getItem("accessToken");
         const storeduserprofile = JSON.parse(localStorage.getItem("currentUser"));
-
         setUser(storeduserprofile);
 
     }, [navigate]);
