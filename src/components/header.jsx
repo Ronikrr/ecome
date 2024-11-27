@@ -124,12 +124,38 @@ const Header = () => {
                             </button>
                         </li>
                         <li className="flex items-center justify-end space-x-4 md:hidden wishlit full" >
-                            <Link to="/wishlist" className="text-black  hover:text-[#4a282b]">
-                                <i class="bi bi-heart"></i>
-                            </Link>
-                            <Link to="/cart" className="text-black  hover:text-[#4a282b]">
-                                <i className="text-xl bi bi-bag"></i>
-                            </Link>
+                            {isUserLoginIN() ? (
+                                <>
+                                    <Link to="/wishlist" onClick={scrollToTop} className="text-black relative  hover:text-[#4a282b]">
+                                        <i class="bi bi-heart text-xl "></i>
+                                        {userWishlit?.length === 0 ? ("") : (
+                                            <div className="absolute bg-red-600 w-[15px] h-[15px] text-white text-[11px] rounded-full top-0 -right-[5px] flex justify-center items-center ">
+                                                <span> {userWishlit?.length || 0} </span>
+                                            </div>
+                                        )}
+                                    </Link>
+
+                                    <Link to="/cart" onClick={scrollToTop} className="text-black  relative hover:text-[#4a282b]">
+                                        <i className="text-xl bi bi-bag "></i>
+                                        {userCart?.length === 0 ? ('') : (
+                                            <div className="absolute bg-red-600 w-[15px] h-[15px] text-white text-[11px] rounded-full top-0 -right-[5px] flex justify-center items-center ">
+                                                <span> {userCart?.length || 0} </span>
+                                            </div>
+                                        )}
+                                    </Link>
+                                    <Link to='/profile' onClick={scrollToTop} className="text-black  hover:text-[#4a282b]">
+                                        <i class="bi bi-person text-xl "></i>
+                                    </Link>
+                                </>
+                            ) : (
+
+                                <div className="flex ">
+                                    <button className="p-2 bg-[#4f282b] text-white rounded-l-lg border border-[#4f282b] hover:bg-transparent hover:text-[#4f282b] " onClick={openmodel} >Login</button>
+                                    {ismodelopen && <Modeal closeModal={closeModal} openmodelrg={openmodelrg} />}
+                                    <button className="p-2 bg-[#4f282b] text-white rounded-r-lg border border-[#4f282b] hover:bg-transparent hover:text-[#4f282b]" onClick={openmodelrg} >Regi</button>
+                                    {ismodelrgopen && <Regiter closeModalrg={closeModalrg} openmodel={openmodel} />}
+                                </div>
+                            )}
                         </li>
                     </ul>
                 </nav>
