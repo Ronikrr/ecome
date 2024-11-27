@@ -108,16 +108,14 @@ const Footer = () => {
                         <div className="flex flex-col w-full md:w-5/12 xl:w-4/12 *:mb-3">
                             <span className="text-xl uppercase ">SUBSCRIBE</span>
                             <div className="maindis">Praesent semper feugiat nibh sed <br /> pulvinar proin gravida hendrerit.</div>
-                            {isSubcriberd ? (
+
 
                                 <form action="" onSubmit={handlesubmit} className="flex space-x-0 w-full *:px-3 *:py-2 " >
                                     <input type="text" value={email} onChange={(e) => setemail(e.target.value)} className="rounded-l-xl w-8/12 border-2 border-[#4F282B]  bg-[#FCEADE] placeholder-shown:text-[#4f282b] placeholder-shown: text-md " placeholder="enter your email" />
                                     <input type="submit" className="w-4/12 cursor-pointer border-1 rounded-r-xl btn_primary" />
 
                                 </form>
-                            ) : (
-                                <p>Thank you for subscribing!</p>
-                            )}
+
                         </div>
                     </div>
                 </div>
