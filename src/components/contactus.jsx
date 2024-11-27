@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Contactus = () => {
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  // const handleOpenModal = () => {
+  //   setShowModal(true);
+  // };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   const [formsubmit, setformdata] = useState({
     firstname: "",
     lastname: "",
@@ -66,6 +77,10 @@ const Contactus = () => {
       phone: "",
       message: "",
     });
+    setTimeout(() => {
+
+      setShowModal(true);
+    }, 2000);
   };
 
   return (
@@ -164,6 +179,30 @@ const Contactus = () => {
             </div>
           </div>
         </form>
+        {showModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="w-[400px] bg-white rounded-xl p-6 text-center shadow-lg">
+              <h1 className="mb-4 text-3xl font-bold text-gray-800">Thank You!</h1>
+              <p className="mb-6 text-gray-600">
+                We appreciate you reaching out to us! Your message has been successfully submitted, and we’ll get back to you shortly.
+              </p>
+              <div className="flex justify-center space-x-4">
+                <button
+                  onClick={handleCloseModal}
+                  className="px-4 py-2 text-sm font-semibold text-gray-700 transition bg-gray-200 rounded-md hover:bg-gray-300"
+                >
+                  Close
+                </button>
+                <Link
+                  to="/"
+                  className="px-4 py-2 text-sm font-semibold transition rounded-md btn_primary"
+                >
+                  Go Back to Home
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
