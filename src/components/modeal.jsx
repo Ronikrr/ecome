@@ -41,7 +41,7 @@ function Modeal({ closeModal, openmodelrg }) {
             seterror('login successful')
             closeModal()
             setTimeout(() => {
-                navigate('/cart')
+                navigate('/profile')
             }, 2000)
         }
     }
