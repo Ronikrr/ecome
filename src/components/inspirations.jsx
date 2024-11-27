@@ -61,8 +61,11 @@ const Inspirations = () => {
       <div className="flex flex-col items-center w-full lg:flex-row">
         {imageArray.map((image, index) => (
           <div key={index} className="hover: w-full lg:w-1/4 xl:w-1/4 lg:even:mt-[200px] ">
-            <div className="w-full  first md:h-auto lg:h-[400px]">
+            <div className="w-full group  first md:h-auto lg:h-[400px] relative cursor-pointer">
               <img src={image.src} className="w-full h-full ring ring-white" alt={image.alt} />
+              <div className="absolute top-0 w-full h-full opacity-0 flex items-center justify-center bg-[#4f282bcc] group-hover:opacity-100 lg:even:top-0">
+                <i class="bi bi-instagram text-white text-[80px]"></i>
+              </div>
             </div>
           </div>
         ))}

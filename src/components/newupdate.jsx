@@ -80,7 +80,7 @@ const Newupdate = () => {
                                     <div className="main_iamge">
                                         <img src={items.src} className="object-cover w-full h-full aspect-video" alt="" />
                                     </div>
-                                    <div className="card_dis p-[40px] bg-[#FCEADE] text-[#4f282b] leading-none capitalize ">
+                                    <div className="card_dis p-[20px] md:p-[40px] bg-[#FCEADE] text-[#4f282b] leading-none capitalize ">
                                         <div className="flex items-center justify-between kit_date mb-[20px]">
                                             <span className="text-md md:text-[30px] font-semibold  uppercase ">
                                                 {items.Catagoury}
