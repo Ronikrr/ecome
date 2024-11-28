@@ -242,111 +242,7 @@ const Blogpage = () => {
                             );
                         })}
                     </div>
-                    {/* <div className="flex flex-wrap w-full md:w-4/12 justify-evenly text-[#4f282b]   ">
-                        <div className="searchbox w-full rounded-[30px] shadow-lg py-[100px] px-[30px] ">
-                            <div className="relative w-full searchdara mb-[20px]">
-                                <input
-                                    type="text"
-                                    className="border-2 border-[#4f282b] w-full pt-5 pb-4 px-3 placeholder:text-[#4f282b]  placeholder:text-[25px] placeholder:uppercase"
-                                    placeholder="Search"
-                                />
-                                <div className="box w-[30px] h-[30px] flex justify-center items-center absolute top-[15px] right-[25px] ">
-                                    <i class="bi bi-search text-[25px] "></i>
-                                </div>
-                            </div>
-                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[30px] md:text-[50px] mb-[25px] ">
-                                <span> Recent activity : </span>
-                            </div>
-                            <div className="w-full artical text-[#4f282b] space-y-[50px]  ">
-                                {activity.map((items) => {
-                                    return (
-                                        <div
-                                            className="flex items-center w-full space-x-[20px] artical_box"
-                                            key={items.id}
-                                        >
-                                            <div className="w-5/12 overflow-hidden img">
-                                                <img
-                                                    src={items.src}
-                                                    alt=""
-                                                    className="block w-full h-full aspect-square "
-                                                />
-                                            </div>
-                                            <div className="flex flex-col w-7/12 img_dis ">
-                                                <div className="text-[15px] md:text-[25px]  mb-[10px]">
-                                                    <span> {items.date} </span>
-                                                </div>
-                                                <div className="text-[15px] md:text-[25px]  prociono-regular font-semibold">
-                                                    <span> {items.dis} </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[30px] md:text-[50px] mt-[50px] mb-[25px] ">
-                                <span> New Arrivals :</span>
-                            </div>
-                            <div className="w-full artical text-[#4f282b] space-y-[50px]  ">
-                                {gift.map((items) => {
-                                    return (
-                                        <div
-                                            className=" flex items-center w-full space-x-[20px] artical_box border-b border-[#4f282b] pb-[25px]  "
-                                            key={items.id}
-                                        >
-                                            <div className="w-5/12 overflow-hidden img">
-                                                <img
-                                                    src={items.src}
-                                                    alt=""
-                                                    className="block w-full h-full aspect-square "
-                                                />
-                                            </div>
-                                            <div className="flex flex-col w-7/12 img_dis ">
-                                                <div className="text-[15px] md:text-[25px] mb-[10px] prociono-regular font-semibold capitalize">
-                                                    <span> {items.name} </span>
-                                                </div>
-                                                <div className="text-[15px] md:text-[25px] mb-[10px] text-[#FFD700] ">
-                                                    <span> {renderStar(items.star)} </span>
-                                                </div>
-                                                <div className="text-[15px] md:text-[25px] ">
-                                                    <span> {items.price} </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[30px] md:text-[50px] mt-[50px] mb-[25px] ">
-                                <span> tags :</span>
-                            </div>
-                            <div className="flex flex-wrap justify-center w-full">
-                                {tags.map((items) => {
-                                    return (
-                                        <div
-                                            key={items.id}
-                                            className="bg-[#4F282B] text-[15px]  w-3/12 me-[20px] mb-[20px]  flex items-center justify-center uppercase text-[#ffffff] h-[60px] md:text-[25px] "
-                                        >
-                                            <span> {items.name} </span>
-                                        </div>
-                                    );
-                                })}
-                            </div>{" "}
-                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[50px] mt-[50px] mb-[25px] ">
-                                <span> Instagram :</span>
-                            </div>
-                            <div className="flex flex-wrap justify-center w-full">
-                                {Instagram.map((items) => {
-                                    return (
-                                        <div
-                                            key={items.id}
-                                            className="bg-[#4F282B] w-3/12 me-[20px] mb-[20px]  flex items-center justify-center uppercase text-[#ffffff]  text-[25px] "
-                                        >
-                                            <img src={items.src} alt="" />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div> */}
+
                     <div className="flex flex-wrap w-full md:w-4/12 justify-evenly text-[#4f282b]">
                         <div className="searchbox w-full rounded-[30px] shadow-lg py-[100px] px-[30px]">
                             <div className="relative w-full searchdara mb-[20px]">
@@ -411,6 +307,36 @@ const Blogpage = () => {
                                         </div>
                                     ))
                                 )}
+                            </div>
+                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[30px] md:text-[50px] mt-[50px] mb-[25px] ">
+                                <span> tags :</span>
+                            </div>
+                            <div className="flex flex-wrap justify-center w-full">
+                                {tags.map((items) => {
+                                    return (
+                                        <div
+                                            key={items.id}
+                                            className="bg-[#4F282B] text-[15px]  w-3/12 me-[20px] mb-[20px]  flex items-center justify-center uppercase text-[#ffffff] h-[60px] md:text-[25px] "
+                                        >
+                                            <span> {items.name} </span>
+                                        </div>
+                                    );
+                                })}
+                            </div>{" "}
+                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[50px] mt-[50px] mb-[25px] ">
+                                <span> Instagram :</span>
+                            </div>
+                            <div className="flex flex-wrap justify-center w-full">
+                                {Instagram.map((items) => {
+                                    return (
+                                        <div
+                                            key={items.id}
+                                            className="bg-[#4F282B] w-3/12 me-[20px] mb-[20px]  flex items-center justify-center uppercase text-[#ffffff]  text-[25px] "
+                                        >
+                                            <img src={items.src} alt="" />
+                                        </div>
+                                    );
+                                })}
                             </div>
                             {/* Repeat similar structure for New Arrivals, Tags, Instagram */}
                         </div>
