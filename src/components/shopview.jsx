@@ -19,6 +19,7 @@ const Shopview = () => {
     const [post, setpost] = useState(null);
     const [activeIndex, setactiveindex] = useState(null);
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
     const [showQuestionForm, setShowQuestionForm] = useState(false);
     const [activetab, setactivetab] = useState('review');
     const [rating, setRating] = useState(0);
@@ -79,12 +80,16 @@ const Shopview = () => {
         const { id } = product;
         if (!id) {
             console.error("Product is missing required fields:", product);
-            setmessage("Failed to add to cart. Product is missing required fields.")
+            setmessage("Failed to add to cart. Product is missing required fields.") 
             return;
+
         }
         try {
             addtocart(user.id, { id });
             console.log(product);
+            setTimeout(() => {
+                setShowNotification(true);
+            }, 2000);
             setmessage('Product added to cart successfully!' );
         } catch (error) {
             console.error("Error adding to cart:", error);
@@ -101,6 +106,10 @@ const Shopview = () => {
         try {
             addwishlist(user.id, { id });
             console.log(product);
+            setShowNotification(true);
+            setTimeout(() => {
+                setShowNotification(false); // Hide after 2 seconds
+            }, 2000);
             setmessage('Product added to wishlist successfully!' );
         } catch (error) {
             console.error("Error adding to wishlist:", error);
@@ -186,6 +195,15 @@ const Shopview = () => {
                     {message?.text}
                 </div>
             )}
+            <div
+                className={`fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg transition transform duration-500 ease-in-out sm:top-10 sm:right-10 ${showNotification ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                    }`}
+            >
+                <p>Product added to cart successfully!</p>
+            </div>
+
+
+
             <div className="container mx-auto">
                 <div className="w-full py-[100px] flex flex-col md:flex-row ">
                    
