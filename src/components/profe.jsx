@@ -20,7 +20,7 @@ const Profe = () => {
                     {imageArray.map((image, index) => (
                         <div key={index} className="w-full lg:w-1/4 xl:w-1/4 ">
                             <div className="w-full first md:h-auto lg:h-[600px]">
-                                <img src={image.src} className="w-full h-full ring ring-white" alt={image.alt} />
+                                <img src={image.src} className="w-full h-full transition-transform duration-600 hover:rounded-t-full ring ring-white " alt={image.alt} />
                             </div>
                             <div className="flex flex-col w-full text-center text-[#4F282B] space-y-1 my-1">
                                 <span className='w-full prociono-regular text-[20px] font-semibold uppercase ' >ceo</span>

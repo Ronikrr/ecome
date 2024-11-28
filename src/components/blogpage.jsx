@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import img1 from "../assets/img/blogpage/1.jpg";
 import img2 from "../assets/img/blogpage/2.jpg";
@@ -193,6 +193,19 @@ const Instagram = [
 ];
 
 const Blogpage = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const filteredActivity = activity.filter((item) =>
+        item.dis.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const filteredGifts = gift.filter((item) =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     return (
         <section className="blogsection py-[50px]">
             <div className="container mx-auto">
@@ -229,7 +242,7 @@ const Blogpage = () => {
                             );
                         })}
                     </div>
-                    <div className="flex flex-wrap w-full md:w-4/12 justify-evenly text-[#4f282b]   ">
+                    {/* <div className="flex flex-wrap w-full md:w-4/12 justify-evenly text-[#4f282b]   ">
                         <div className="searchbox w-full rounded-[30px] shadow-lg py-[100px] px-[30px] ">
                             <div className="relative w-full searchdara mb-[20px]">
                                 <input
@@ -332,6 +345,74 @@ const Blogpage = () => {
                                     );
                                 })}
                             </div>
+                        </div>
+                    </div> */}
+                    <div className="flex flex-wrap w-full md:w-4/12 justify-evenly text-[#4f282b]">
+                        <div className="searchbox w-full rounded-[30px] shadow-lg py-[100px] px-[30px]">
+                            <div className="relative w-full searchdara mb-[20px]">
+                                <input
+                                    type="text"
+                                    className="border-2 border-[#4f282b] w-full pt-5 pb-4 px-3 placeholder:text-[#4f282b] placeholder:text-[25px] placeholder:uppercase"
+                                    placeholder="Search"
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                />
+                                <div className="box w-[30px] h-[30px] flex justify-center items-center absolute top-[15px] right-[25px]">
+                                    <i className="bi bi-search text-[25px]"></i>
+                                </div>
+                            </div>
+                            <div className="activity font-semibold leading-none capitalize prociono-regular text-[30px] md:text-[50px] mb-[25px]">
+                                <span>Recent activity:</span>
+                            </div>
+                            <div className="w-full artical text-[#4f282b] space-y-[50px]">
+                                {filteredActivity.length === 0 ? (
+                                    <p>No activity found</p>
+                                ) : (
+                                    filteredActivity.map((items) => (
+                                        <div className="flex items-center w-full space-x-[20px] artical_box" key={items.id}>
+                                            <div className="w-5/12 overflow-hidden img">
+                                                <img src={items.src} alt="" className="block w-full h-full aspect-square" />
+                                            </div>
+                                            <div className="flex flex-col w-7/12 img_dis">
+                                                <div className="text-[15px] md:text-[25px] mb-[10px]">
+                                                    <span>{items.date}</span>
+                                                </div>
+                                                <div className="text-[15px] md:text-[25px] prociono-regular font-semibold">
+                                                    <span>{items.dis}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                            <div className=" activity font-semibold leading-none capitalize prociono-regular text-[30px] md:text-[50px] mt-[50px] mb-[25px] ">
+                                <span> New Arrivals :</span>
+                            </div>
+                            <div className="w-full artical text-[#4f282b] space-y-[50px]">
+                                {filteredGifts.length === 0 ? (
+                                    <p>No activity found</p>
+                                ) : (
+                                    filteredGifts.map((items) => (
+                                        <div className="flex items-center w-full space-x-[20px] artical_box" key={items.id}>
+                                            <div className="w-5/12 overflow-hidden img">
+                                                <img src={items.src} alt="" className="block w-full h-full aspect-square" />
+                                            </div>
+                                            <div className="flex flex-col w-7/12 img_dis">
+                                                <div className="text-[15px] md:text-[25px] mb-[10px]">
+                                                    <span>{items.name}</span>
+                                                </div>
+                                                <div className="text-[15px] md:text-[25px] mb-[10px] text-[#FFD700] ">
+                                                    <span> {renderStar(items.star)} </span>
+                                                </div>
+                                                <div className="text-[15px] md:text-[25px] prociono-regular font-semibold">
+                                                    <span>{items.price}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                            {/* Repeat similar structure for New Arrivals, Tags, Instagram */}
                         </div>
                     </div>
                 </div>
