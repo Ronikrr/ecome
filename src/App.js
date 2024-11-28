@@ -23,6 +23,7 @@ import Profile from './pages/profile';
 import { Cartprovider } from './components/cart/cartcontext';
 import { WishlistProvider } from './components/wishlist/wishlistcontext';
 import Cartsection from './components/cart/cartsection';
+import Checkoutpage from './components/cart/checkoutpage'
 import ThankYou from './components/thankyou';
 // Layout component that includes Header and Footer
 const Layout = ({ children }) => (
@@ -53,6 +54,7 @@ function App() {
       <Routes>
           <Route path='/' element={<Layout><Home /></Layout>} />
           <Route path='/regi' element={<Register />} />
+          <Route path='/checkout' element={<Checkoutpage />} />
           <Route path='/thankyou' element={<ThankYou />} />
           <Route path='/profile' element={<Layout><Profile /></Layout>} />
           <Route path='/aboutus' element={<Layout><Aboutus /></Layout>} />

@@ -175,13 +175,25 @@ const Cartsection = () => {
                             ) : (
                                 <div className="flex items-center justify-around w-6/12 w-full">
                                     Total Amount : ${products.reduce((total, item) => total + item?.price * (cart[user.id]?.find(cartItem => cartItem.id === item.id)?.quantity || 1), 0)}
-                                    <Link
-                                        to={`/checkout/${products.reduce((total, item) => total + item?.price * (cart[user.id]?.find(cartItem => cartItem.id === item.id)?.quantity || 1), 0)}`}
-                                        className="px-6 py-2 uppercase rounded-full btn_primary"
-                                        onClick={scrollToTop}
-                                    >
-                                        Buy now
-                                    </Link>
+                                        <Link
+                                            to={`/checkout?ids=${products
+                                                .map((item) => item.id)
+                                                .join(",")}&names=${products
+                                                    .map((item) => encodeURIComponent(item.name)) // Encode names for URLs
+                                                    .join(",")}&total=${products.reduce(
+                                                        (total, item) =>
+                                                            total +
+                                                            item?.price *
+                                                            (cart[user.id]?.find((cartItem) => cartItem.id === item.id)?.quantity || 1),
+                                                        0
+                                                    )}`}
+                                            className="px-6 py-2 uppercase rounded-full btn_primary"
+                                            onClick={scrollToTop}
+                                        >
+                                            Buy now
+                                        </Link>
+
+
                                 </div>
                             )}
                         </div>
