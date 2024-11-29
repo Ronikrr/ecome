@@ -1,4 +1,3 @@
-
 import React, { createContext, useEffect, useState } from "react";
 
 export const Cartcontext = createContext();
@@ -10,7 +9,7 @@ export const Cartprovider = ({ children }) => {
         const savecart = JSON.parse(localStorage.getItem("cosmaticCart")) || {};
         setcart(savecart);
         calculateCartTotal(savecart);
-    },[]);
+    }, []);
     const calculateCartTotal = (cart) => {
         const total = Object.values(cart)
             .flat()
@@ -55,12 +54,14 @@ export const Cartprovider = ({ children }) => {
             }
         });
     };
+
+
     const decreaseQuantity = (userid, productid) => {
         setcart((prevcart) => {
             const updatedcart = { ...prevcart };
             const usercart = updatedcart[userid] || [];
             const productIndex = usercart.findIndex((item) => item.id === productid);
-            if (productIndex > -1 && usercart[productIndex].quantity>1) {
+            if (productIndex > -1 && usercart[productIndex].quantity > 1) {
                 const updateproduct = {
                     ...usercart[productIndex],
                     quantity: usercart[productIndex].quantity - 1,
@@ -79,15 +80,26 @@ export const Cartprovider = ({ children }) => {
         setcart((prevcart) => {
             const updatedcart = { ...prevcart };
             if (Array.isArray(updatedcart[userid])) {
-                updatedcart[userid]=updatedcart[userid].filter(item=>item.id !== productid)
+                updatedcart[userid] = updatedcart[userid].filter(
+                    (item) => item.id !== productid
+                );
             }
-            localStorage.setItem('cosmaticCart', JSON.stringify(updatedcart));
+            localStorage.setItem("cosmaticCart", JSON.stringify(updatedcart));
             calculateCartTotal(updatedcart);
             return updatedcart;
-        })
-    }
+        });
+    };
     return (
-        <Cartcontext.Provider value={{cart,cartTotal,removeformcart,addtocart,increaceQuntity,decreaseQuantity}} >
+        <Cartcontext.Provider
+            value={{
+                cart,
+                cartTotal,
+                removeformcart,
+                addtocart,
+                increaceQuntity,
+                decreaseQuantity,
+            }}
+        >
             {children}
         </Cartcontext.Provider>
     );
