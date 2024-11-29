@@ -265,13 +265,13 @@ const Shopview = () => {
 
                         <div className="flex flex-col mt-[50px] md:flex-row items-center space-y-4 md:space-y-0 space-x-0 md:space-x-[30px] btngroup mb-[50px]">
                             <div className="flex items-center btnbox_product ">
-                                <button className=" text-[25px] border-2 border-[#4f282b] hover:text-[#4f282b]  hover:bg-transparent bg-[#4f282b] text-white rounded-l-full p-1" onClick={decreaseQuantity} >
+                                <button className=" text-[25px] border-2 border-[#4f282b] hover:text-[#4f282b]  hover:bg-transparent bg-[#4f282b] text-white rounded-l-full p-1" onClick={() => decreaseQuantity(user.id, post.id)} >
                                     <i class="bi bi-dash"></i>
                                 </button>
                                 <span className="px-6 bg-[#4f282b] py-3 text-[#fff] ">{cart[user.id]?.find(
                                     (itemInCart) => itemInCart.id === post.id
                                 )?.quantity || 1}</span>
-                                <button className="text-[25px] border-2 border-[#4f282b] hover:text-[#4f282b]  hover:bg-transparent bg-[#4f282b] text-white rounded-r-full p-1" onClick={increaceQuntity} >
+                                <button className="text-[25px] border-2 border-[#4f282b] hover:text-[#4f282b]  hover:bg-transparent bg-[#4f282b] text-white rounded-r-full p-1" onClick={() => increaceQuntity(user.id, post.id)} >
                                     <i class="bi bi-plus"></i>
                                 </button>
                             </div>
