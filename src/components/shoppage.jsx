@@ -48,7 +48,7 @@ const Shoppage = () => {
         const { id } = product;
         if (!id) {
             console.error("Product is missing required fields:", product);
-            // setmessage("Failed to add to cart. Product is missing required fields.") 
+            // setError("Failed to add to cart. Product is missing required fields.") 
             return;
 
         }
@@ -61,7 +61,7 @@ const Shoppage = () => {
             // setmessage('Product added to cart successfully!' );
         } catch (error) {
             console.error("Error adding to cart:", error);
-            // setmessage( 'Failed to add to cart. Please try again.' );
+            // setError('Failed to add to cart. Please try again.');
         }
     };
     const filteredProduct = product.filter(
@@ -155,16 +155,19 @@ const Shoppage = () => {
                                             className="w-full h-full m-0 md:me-5 object-fit aspect-square "
                                         />
                                         <div className="absolute flex flex-col space-y-[30px] left-[-50px] top-[30px] group-hover:left-[30px] transition-all ">
-                                            <Link to="path" onClick={() => handleAddToCart(user.id, product.id)} ><i class="bi bi-heart text-[30px] font-semibold flex "></i></Link>
+                                            {/* <Link to="path" onClick={() => handleAddToCart(user.id, product.id)} ><i class="bi bi-heart text-[30px] font-semibold flex "></i></Link>
                                             <Link to="path"><i class="bi bi-recycle text-[30px] font-semibold flex "></i></Link>
-                                            <Link><i class="bi bi-search text-[30px] font-semibold flex "></i></Link>
+                                            <Link><i class="bi bi-search text-[30px] font-semibold flex "></i></Link> */}
+                                            <button><i class="bi bi-heart text-[30px] font-semibold flex "></i></button>
+                                            <button><i class="bi bi-recycle text-[30px] font-semibold flex "></i></button>
+                                            <button><i class="bi bi-search text-[30px] font-semibold flex "></i></button>
                                         </div>
                                     </div>
                                     <div className="main_dis py-[25px] text-center px-[30px] space-y-[10px] text-[#4f282b] space-y-[20px] ">
                                         <div className="flex items-center justify-center ">
                                             <span className="font-semibold text-[#FFD700] text-[10px] md:text-[40px]  ">
 
-                                                {renderStar(items.rating)}
+                                                {renderStar(items.rating || 4)}
 
                                             </span>
                                             {items.rating}
