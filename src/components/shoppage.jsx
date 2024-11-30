@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from './loader'
-
+import { Cartcontext } from "./cart/cartcontext";
 
 const Shoppage = () => {
+    const [user, setuser] = useState(null);
+    const navigate = useNavigate()
     const resultPage = 12;
+    const { cart, addtocart, increaceQuntity, decreaseQuantity } =
+        useContext(Cartcontext);
     const [current, setCurrent] = useState(1);
     const [criteria, setCriteria] = useState("id");
     const [product, setProduct] = useState([]);
     const [productType, setProductType] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -22,7 +26,7 @@ const Shoppage = () => {
 
                 const data = await response.json();
                 const validProducts = data.filter((prod) => prod && prod.id).slice(0, 100);
-              
+
                 setProduct(validProducts);
             } catch (err) {
                 setError(err.message);
@@ -33,7 +37,33 @@ const Shoppage = () => {
 
         fetchProducts();
     }, []);
+    useEffect(() => {
 
+        const storeduserprofile = JSON.parse(localStorage.getItem("currentUser"));
+
+        setuser(storeduserprofile);
+        setLoading(false);
+    }, [navigate]);
+    const handleAddToCart = (product) => {
+        const { id } = product;
+        if (!id) {
+            console.error("Product is missing required fields:", product);
+            // setmessage("Failed to add to cart. Product is missing required fields.") 
+            return;
+
+        }
+        try {
+            addtocart(user.id, { id });
+            console.log(product);
+            // setTimeout(() => {
+            //     setShowNotification(true);
+            // }, 2000);
+            // setmessage('Product added to cart successfully!' );
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            // setmessage( 'Failed to add to cart. Please try again.' );
+        }
+    };
     const filteredProduct = product.filter(
         (prod) => productType.length === 0 || productType.includes(prod.category)
     );
@@ -106,7 +136,7 @@ const Shoppage = () => {
                                     <option value="name">Sort by Name</option>
                                     <option value="price">Sort by Price</option>
                                     <option value="category">Sort by Category</option>
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -125,9 +155,9 @@ const Shoppage = () => {
                                             className="w-full h-full m-0 md:me-5 object-fit aspect-square "
                                         />
                                         <div className="absolute flex flex-col space-y-[30px] left-[-50px] top-[30px] group-hover:left-[30px] transition-all ">
-                                            <Link to="path"><i class="bi bi-heart text-[30px] font-semibold flex "></i></Link>
+                                            <Link to="path" onClick={() => handleAddToCart(user.id, product.id)} ><i class="bi bi-heart text-[30px] font-semibold flex "></i></Link>
                                             <Link to="path"><i class="bi bi-recycle text-[30px] font-semibold flex "></i></Link>
-                                            <Link to="path"><i class="bi bi-search text-[30px] font-semibold flex "></i></Link>
+                                            <Link><i class="bi bi-search text-[30px] font-semibold flex "></i></Link>
                                         </div>
                                     </div>
                                     <div className="main_dis py-[25px] text-center px-[30px] space-y-[10px] text-[#4f282b] space-y-[20px] ">
@@ -153,7 +183,7 @@ const Shoppage = () => {
                                                     <span className="text-[25px] md:text-[40px] font-semibold text-[#4f282b]"> ${items.discountedPrice}</span>
                                                 </>
                                             ) : ( */}
-                                                    <span>${items?.price}</span>
+                                            <span>${items?.price}</span>
                                             {/* )} */}
                                         </div>
                                     </div>
