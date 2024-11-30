@@ -13,7 +13,7 @@ const Shopview = () => {
     const navigate = useNavigate();
     const { cart, addtocart, increaceQuntity, decreaseQuantity } =
         useContext(Cartcontext);
-    const [message ,setmessage]=useState(null)
+    // const [message ,setmessage]=useState(null)
     const { addwishlist } = useContext(WishlistContext);
     const { productid } = useParams();
     const [post, setpost] = useState(null);
@@ -55,14 +55,14 @@ const Shopview = () => {
             try {
                 const res = await fetch(`https://makeup-api.herokuapp.com/api/v1/products/${productid}.json`)
                 if (!res.ok) {
-                    setmessage( `Error to featch product: ${res.status} ` )
+                    console.log(`Error to featch product: ${res.status} `)
                     // throw new Error(`Error: ${res.status}`)
                 }
                 const data = await res.json();
                 setpost(data);
             } catch (error) {
                 console.error(`Error to featch product: ${error} `);
-                setmessage( `Error to featch product: ${error} ` )
+
             }
         }
         fetchproduct();
@@ -80,7 +80,7 @@ const Shopview = () => {
         const { id } = product;
         if (!id) {
             console.error("Product is missing required fields:", product);
-            setmessage("Failed to add to cart. Product is missing required fields.") 
+            // setmessage("Failed to add to cart. Product is missing required fields.") 
             return;
 
         }
@@ -90,17 +90,17 @@ const Shopview = () => {
             setTimeout(() => {
                 setShowNotification(true);
             }, 2000);
-            setmessage('Product added to cart successfully!' );
+            // setmessage('Product added to cart successfully!' );
         } catch (error) {
             console.error("Error adding to cart:", error);
-            setmessage( 'Failed to add to cart. Please try again.' );
+            // setmessage( 'Failed to add to cart. Please try again.' );
         }
     };
     const handleAddTowishlist = (product) => {
         const { id } = product;
         if (!id) {
             console.error("Product is missing required fields:", product);
-            setmessage( 'Failed to add to wishlist. Product is missing required fields.' );
+            // setmessage( 'Failed to add to wishlist. Product is missing required fields.' );
             return;
         }
         try {
@@ -110,18 +110,18 @@ const Shopview = () => {
             setTimeout(() => {
                 setShowNotification(false); // Hide after 2 seconds
             }, 2000);
-            setmessage('Product added to wishlist successfully!' );
+            // setmessage('Product added to wishlist successfully!' );
         } catch (error) {
             console.error("Error adding to wishlist:", error);
-            setmessage( 'Failed to add to wishlist. Please try again.' );
+            // setmessage( 'Failed to add to wishlist. Please try again.' );
         }
     };
-    useEffect(() => {
-        if (message) {
-            const timer = setTimeout(() => setmessage(null), 3000);
-            return () => clearTimeout(timer)
-        }
-    })
+    // useEffect(() => {
+    //     if (message) {
+    //         const timer = setTimeout(() => setmessage(null), 3000);
+    //         return () => clearTimeout(timer)
+    //     }
+    // })
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -142,7 +142,7 @@ const Shopview = () => {
 
 
             } catch (err) {
-                setmessage( `${err.message}` );
+                console.log(`${err.message}`);
                
             } finally {
                 setLoading(false);
@@ -157,7 +157,7 @@ const Shopview = () => {
 
     // Display loading or error message
     if (loading) return <Loader />
-    if (message) return <p>Error: {message}</p>;
+    // if (message) return <p>Error: {message}</p>;
     if (!post) {
         return <p>Loading...</p>;
     }
@@ -190,11 +190,7 @@ const Shopview = () => {
     return (
         <section className="pt-20">
             <Breadcrumb />
-            {message && (
-                <div className={message.type === 'success' ? 'success-message' : 'error-message'}>
-                    {message?.text}
-                </div>
-            )}
+
             <div
                 className={`fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg transition transform duration-500 ease-in-out sm:top-10 sm:right-10 ${showNotification ? "opacity-100 scale-100" : "opacity-0 scale-95"
                     }`}
