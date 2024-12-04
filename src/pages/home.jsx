@@ -14,18 +14,22 @@ function Home() {
   Maintitle("Cosmetic - Home");
 
   return (
-    <div >
-      <Banner />
-      <Catagoury />
-      <Exploreproduct />
-      <Aboutsection />
-      <Offertime />
-      <Bestcolletion />
-      <Reviews />
-      <Ani />
-      <Newupdate />
-      <Inspirations />
-    </div>
+    < >
+
+      <div className="">
+        <Banner />
+        <Catagoury />
+        <Exploreproduct />
+        <Aboutsection />
+        <Offertime />
+        <Bestcolletion />
+        <Reviews />
+        <Ani />
+        <Newupdate />
+        <Inspirations />
+      </div>
+
+    </>
   )
 }
 

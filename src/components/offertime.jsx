@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 
-const targetDate = new Date("2024-11-15T00:00:00Z");
+const targetDate = new Date("2024-12-15T00:00:00Z");
 const Offertime = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);

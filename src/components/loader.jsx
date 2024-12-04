@@ -2,8 +2,10 @@ import React from 'react';
 
 function Loader() {
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-80">
-            <div className="w-16 h-16 border-4 border-t-4 border-gray-200 rounded-full border-t-[#4f282b] animate-spin"></div>
+        <div className="flex flex-col items-center justify-center w-screen h-screen gap-4">
+            <div className="flex items-center justify-center w-20 h-20 text-4xl text-[#4f282b] border-4 border-transparent rounded-full animate-spin border-t-[#4f282b]">
+                <div className="flex items-center justify-center w-16 h-16 text-2xl text-red-400 border-4 border-transparent rounded-full animate-spin border-t-red-400" />
+            </div>
         </div>
     );
 }

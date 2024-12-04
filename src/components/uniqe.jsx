@@ -23,6 +23,12 @@ const spatdata = [
         dis: "Decorate your nails with various unique nail cosmetics. We have products like nail hardener, polish, extensions, artificial nails"
     }
 ]
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+};
 const Uniqe = () => {
     return (
         <section className='uniqe' >
@@ -67,9 +73,9 @@ const Uniqe = () => {
                         </ul>
                         <div className="flex items-center flex-wrap justify-center mt-[60px] space-x-[40px] ">
 
-                            <Link className="px-8 py-2 text-xl capitalize border rounded-full hover:bg-white hover:text-[#4f282b] ">
+                            <Link to='/contact' onClick={scrollToTop} className="px-8 py-2 text-xl capitalize border rounded-full hover:bg-white hover:text-[#4f282b] ">
 
-                                shop now
+                                contact us
                             </Link>
                             <div className="flex items-center realtive space-x-[10px] ">
                                 <div className="w-[40px] h-[40px] flex rounded-full bg-white text-[#4F282B] items-center justify-center">

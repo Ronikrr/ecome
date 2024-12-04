@@ -25,7 +25,8 @@ import { WishlistProvider } from './components/wishlist/wishlistcontext';
 import Cartsection from './components/cart/cartsection';
 import Checkoutpage from './components/cart/checkoutpage'
 import ThankYou from './components/thankyou';
-// Layout component that includes Header and Footer
+
+
 const Layout = ({ children }) => (
   <>
     <Header />
@@ -33,10 +34,17 @@ const Layout = ({ children }) => (
     <Footer />
   </>
 );
-
 function App() {
-  const [userid, setUserid] = useState(null);
 
+  const [userid, setUserid] = useState(null);
+  const [loading, setloading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setloading(false)
+    }, 3000);
+
+    return () => clearTimeout(timer)
+  }, [])
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (token) {
@@ -48,36 +56,42 @@ function App() {
       }
     }
   }, []);
-  return (
+  return loading ? (
+
+    <div className="flex flex-col items-center justify-center w-screen h-screen gap-4">
+      <div className="flex items-center justify-center w-20 h-20 text-4xl text-[#4f282b] border-4 border-transparent rounded-full animate-spin border-t-[#4f282b]">
+        <div className="flex items-center justify-center w-16 h-16 text-2xl text-red-400 border-4 border-transparent rounded-full animate-spin border-t-red-400" />
+      </div>
+    </div>
+  ) : (
     <Router>
         <Cartprovider>
-      <Routes>
-          <Route path='/' element={<Layout><Home /></Layout>} />
-          <Route path='/regi' element={<Register />} />
+          <Routes>
+            <Route path='/' element={<Layout><Home /></Layout >} />
+            <Route path='/regi' element={< Register />} />
           <Route path='/checkout' element={<Checkoutpage />} />
           <Route path='/thankyou' element={<ThankYou />} />
-          <Route path='/profile' element={<Layout><Profile /></Layout>} />
-          <Route path='/aboutus' element={<Layout><Aboutus /></Layout>} />
-          <Route path='/contact' element={<Layout><Contact /></Layout>} />
-          <Route path='/service' element={<Layout><Service /></Layout>} />
-          <Route path='/wishlist' element={<Layout><Wishlist /></Layout>} />
-          <Route path='/ourteam' element={<Layout><Ourteam /></Layout>} />
-          <Route path='/cart' element={<Layout><Cart /></Layout>} />
-          <Route path='/blog' element={<Layout><Blog /></Layout>} />
-          <Route path='/blog/:blogid' element={<Layout><Blogview /></Layout>} />
-          <Route path='/shop' element={<Layout><Shop /></Layout>} />
-          <Route path='/ordertraking' element={<Layout><Ordertraking /></Layout>} />
-          <Route path='/faq' element={<Layout><Faq /></Layout>} />
-          <Route path='/shop/:productid' element={<Layout><Shopview /></Layout>} />
-          <Route path='/giftcard' element={<Layout><Giftcard /></Layout>} />
-          <Route path='*' element={<Notfound />} />
+            <Route path='/profile' element={<Layout> <Profile /></Layout >} />
+            <Route path='/aboutus' element={<Layout> <Aboutus /></Layout>} />
+            <Route path='/contact' element={<Layout> <Contact /></Layout>} />
+            <Route path='/service' element={<Layout> <Service /></Layout >} />
+            <Route path='/wishlist' element={<Layout> <Wishlist /></Layout >} />
+            <Route path='/ourteam' element={<Layout> <Ourteam /></Layout >} />
+            <Route path='/cart' element={<Layout> <Cart /></Layout >} />
+            <Route path='/blog' element={<Layout> <Blog /></Layout >} />
+            <Route path='/blog/:blogid' element={<Layout Layout > <Blogview /></Layout>} />
+            <Route path='/shop' element={<Layout> <Shop /></Layout >} />
+            <Route path='/ordertraking' element={<Layout> <Ordertraking /></Layout>} />
+            <Route path='/faq' element={<Layout> <Faq /></Layout >} />
+            <Route path='/shop/:productid' element={<Layout> <Shopview /></Layout>} />
+            <Route path='/giftcard' element={<Layout> <Giftcard /></Layout>} />
+            <Route path='*' element={< Notfound />} />
           {userid && <Cartsection userId={userid} />}
-          {userid && <WishlistProvider userId={userid} />}
-       
-      </Routes>
+            {userid && <WishlistProvider userId={userid} />}
+          </Routes>
         </Cartprovider>
     </Router>
-  );
+    )
 }
 
 export default App;

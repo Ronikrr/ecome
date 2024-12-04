@@ -6,6 +6,7 @@ import Reviews from '../components/reviews'
 import Profe from '../components/profe'
 import Maintitle from '../components/maintitle';
 
+
 const Aboutus = () => {
     Maintitle('Cosmatic - Aboutus')
     return (

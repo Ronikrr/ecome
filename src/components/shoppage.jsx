@@ -7,8 +7,7 @@ const Shoppage = () => {
     const [user, setuser] = useState(null);
     const navigate = useNavigate()
     const resultPage = 12;
-    const { cart, addtocart, increaceQuntity, decreaseQuantity } =
-        useContext(Cartcontext);
+    const { addtocart } = useContext(Cartcontext);
     const [current, setCurrent] = useState(1);
     const [criteria, setCriteria] = useState("id");
     const [product, setProduct] = useState([]);
@@ -44,26 +43,6 @@ const Shoppage = () => {
         setuser(storeduserprofile);
         setLoading(false);
     }, [navigate]);
-    const handleAddToCart = (product) => {
-        const { id } = product;
-        if (!id) {
-            console.error("Product is missing required fields:", product);
-            // setError("Failed to add to cart. Product is missing required fields.") 
-            return;
-
-        }
-        try {
-            addtocart(user.id, { id });
-            console.log(product);
-            // setTimeout(() => {
-            //     setShowNotification(true);
-            // }, 2000);
-            // setmessage('Product added to cart successfully!' );
-        } catch (error) {
-            console.error("Error adding to cart:", error);
-            // setError('Failed to add to cart. Please try again.');
-        }
-    };
     const filteredProduct = product.filter(
         (prod) => productType.length === 0 || productType.includes(prod.category)
     );
@@ -114,7 +93,7 @@ const Shoppage = () => {
     };
 
     if (loading) return <Loader />;
-    if (error) return <p>Error: {error}</p>;
+    // if (error) return <p>Error: {error}</p>;
     return (
         <section className="shopsection py-[100px]  text-[#4f282b] ">
             <div className="container mx-auto">
@@ -141,6 +120,9 @@ const Shoppage = () => {
                             </div>
                         </div>
                         <div className="flex flex-wrap justify-between w-full mt-[36px]">
+
+
+
                             {currentProduct.map((items) => (
                                 <Link
                                     onClick={scrollToTop}
@@ -148,6 +130,7 @@ const Shoppage = () => {
                                     className="w-full 2xl:w-4/12 md:w-5/12  overflow-hidden h-auto  mb-[50px] group relative "
                                     key={items.id}
                                 >
+
                                     <div className="main-image">
                                         <img
                                             src={items.api_featured_image}

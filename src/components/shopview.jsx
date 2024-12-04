@@ -729,9 +729,9 @@ const Shopview = () => {
     return (
         <section className="pt-20">
             <Breadcrumb />
-            <div className={`fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg transition transform duration-500 ease-in-out sm:top-10 sm:right-10 ${showNotification ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
+            {/* <div className={`fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg transition transform duration-500 ease-in-out sm:top-10 sm:right-10 ${showNotification ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
                 <p>Product added to cart successfully!</p>
-            </div>
+            </div> */}
             <div className="container mx-auto">
                 <div className="w-full py-[100px] flex flex-col md:flex-row ">
                     <div className="flex justify-center w-full md:w-6/12">

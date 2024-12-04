@@ -1,7 +1,6 @@
 import React from 'react'
 import img1 from '../assets/img/about/Rectangle19.png'
-// import { Link } from 'react-router-dom'
-import img4 from '../assets/img/about/trans.png'
+
 
 const Pagebanner = () => {
     return (
