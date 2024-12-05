@@ -21,7 +21,7 @@
 
 /* Style the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background: #f8d200; 
+  background: #4f282b; 
   border-radius: 10px;
   border: 2px solid #f0f0f0; /* Add a border for better appearance */
 }
