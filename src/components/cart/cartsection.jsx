@@ -30,10 +30,6 @@ const Cartsection = () => {
                 console.error(`Cart for user ${user.id} is not an array`);
                 return;
             }
-            console.log("User :", user);
-            console.log("Cart:", cart);
-            console.log("User  ID:", user?.id);
-            console.log("User  cart items:", userCart);
 
             if (userCart.length === 0) {
                 setProducts([]);
