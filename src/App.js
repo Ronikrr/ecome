@@ -30,7 +30,7 @@ import ThankYou from './components/thankyou';
 const Layout = ({ children }) => (
   <>
     <Header />
-    <main>{children}</main>
+    <main className='pl-0' >{children}</main>
     <Footer />
   </>
 );

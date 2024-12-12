@@ -7,6 +7,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Prociono&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 
 @layer utilities{
+  main{
+    padding-left: 0px !important;
+  }
   /* Target the scrollbar track */
 ::-webkit-scrollbar {
   width: 12px; /* Width of the scrollbar */

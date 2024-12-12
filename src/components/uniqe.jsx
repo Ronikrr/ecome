@@ -58,7 +58,7 @@ const Uniqe = () => {
                         <ul className="mt-10 ml-5 space-y-10">
 
                             {spatdata.map(items => (
-                                <li className='relative flex items-center' key={items.id} >
+                                <li className='relative flex flex-col items-center lg:flex-row ' key={items.id} >
                                     <img src={items.src} alt="" className='w-[90px] h-[90px] mr-7' />
                                     <div className="">
                                         <span className="text-5xl  capitalize prociono-regular md:text-[50px] spacing font-medium ">
