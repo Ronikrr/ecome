@@ -21,10 +21,10 @@ const Profilesection = () => {
     };
 
     const handleInputChange = (e) => {
-        const { id, value } = e.target; // Fix: Destructure from e.target
+        const { id, value } = e.target; 
         setProfile((prev) => ({
             ...prev,
-            [id]: value, // Dynamically update the profile state based on the input field
+            [id]: value, 
         }));
     };
 
@@ -32,7 +32,7 @@ const Profilesection = () => {
         const selectedFile = e.target.files ? e.target.files[0] : null;
         if (selectedFile) {
             const imageUrl = URL.createObjectURL(selectedFile);
-            setProfileImage(imageUrl); // Update state with the image URL
+            setProfileImage(imageUrl);
         }
     };
 

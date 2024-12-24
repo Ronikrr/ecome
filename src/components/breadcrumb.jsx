@@ -21,7 +21,8 @@ const Breadcrumb = () => {
             <div className=" w-full h-[300px] top-0 bg-[#FCEADE] opacity-[0.5] flex items-center justify-center flex-col">
              
                
-                <span>  <nav aria-label='breadcrumb' className='text-[#4F282B]' >
+                <span>
+                    <nav aria-label='breadcrumb' className='text-[#4F282B]' >
                     <ol className="flex space-x-2">
                         <li>
                             <Link to='/' className='uppercase hover:underline' >home</Link>
@@ -44,7 +45,8 @@ const Breadcrumb = () => {
                             )
                         })}
                     </ol>
-                </nav></span>
+                    </nav>
+                </span>
             </div>
         </section>
     )

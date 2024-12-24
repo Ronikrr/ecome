@@ -79,7 +79,7 @@ function App() {
             <Route path='/ourteam' element={<Layout> <Ourteam /></Layout >} />
             <Route path='/cart' element={<Layout> <Cart /></Layout >} />
             <Route path='/blog' element={<Layout> <Blog /></Layout >} />
-            <Route path='/blog/:blogid' element={<Layout Layout > <Blogview /></Layout>} />
+            <Route path='/blog/:blogid' element={<Layout> <Blogview /></Layout>} />
             <Route path='/shop' element={<Layout> <Shop /></Layout >} />
             <Route path='/ordertraking' element={<Layout> <Ordertraking /></Layout>} />
             <Route path='/faq' element={<Layout> <Faq /></Layout >} />
