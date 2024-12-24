@@ -11,6 +11,9 @@ const Cartsection = () => {
     const navigate = useNavigate();
     const { cart, removeformcart, increaceQuntity, decreaseQuantity } = useContext(Cartcontext);
 
+
+
+
     useEffect(() => {
         const accessToken = localStorage.getItem("accessToken");
         const storedUserProfile = JSON.parse(localStorage.getItem("currentUser"));

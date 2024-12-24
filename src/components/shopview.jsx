@@ -600,7 +600,25 @@ const Shopview = () => {
         if (!rating || !review || !name || !email) {
             setErrorMessage('all fields are reqi')
         }
+        else {
+            const reviewdata = {
+                rating,
+                review,
+                name,
+                email,
+            }
+            localStorage.setItem('userReview', JSON.stringify(reviewdata))
+            setErrorMessage('');
+            console.log('Review data saved to localStorage:', reviewdata);
+        }
     };
+    const onchangereview = (e) => {
+        const { name, value } = e.target;
+        setRating(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
 
     const toggleReviewForm = () => {
         setShowReviewForm(!showReviewForm);
@@ -1032,17 +1050,18 @@ const Shopview = () => {
                     </div>
                     <div className="w-full mt-[20px] space-y-[30px] text-[20px] md:text-[40px] text-center md:text-left lato-thin font-semibold capitalize">
                         <span>Your rating</span>
-                        <StarRating rating={rating} setrating={setRating} />
+                        <StarRating rating={rating} setRating={setRating} onchange={onchangereview} />
                         <textarea
                             value={review}
-                            onChange={(e) => setReview(e.target.value)}
+                            onChange={onchangereview}
+                            name="review"
                             placeholder="Share your experience"
                             className="w-full placeholder:text-[#4f282b] p-4 mt-4 border-b border-b-[#4f282b] rounded"
                             rows="4"
                         />
                         <div className="flex flex-col justify-between w-full space-x-0 md:space-x-10 md:flex-row email_name">
-                            <input type="text" placeholder="Name" className="w-full md:w-6/12 placeholder:text-[#4f282b] border-b border-b-[#4f282b] rounded" />
-                            <input type="text" placeholder="Email" className="w-full md:w-6/12 placeholder:text-[#4f282b] border-b border-b-[#4f282b] rounded" />
+                            <input type="text" name="name" placeholder="Name" onChange={onchangereview} className="w-full md:w-6/12 placeholder:text-[#4f282b] border-b border-b-[#4f282b] rounded" />
+                            <input type="text" name="email" placeholder="Email" onChange={onchangereview} className="w-full md:w-6/12 placeholder:text-[#4f282b] border-b border-b-[#4f282b] rounded" />
                         </div>
                         <div className="">
                             <div className="w-full text-[15px] md:text-[30px] lato-thin font-semibold">
