@@ -40,9 +40,9 @@ const CheckoutPage = () => {
                 <h2 className="text-[#4F282B] text-3xl font-bold text-center mt-8 transition-all duration-300">
                     Total: <span className="text-[#000000]">${total}</span>
                 </h2>
-                <Link className="mt-8 text-center w-full py-3 bg-[#4F282B] text-white rounded-full text-xl font-semibold hover:bg-[#000000] transition-all duration-300">
+                <button className="mt-8 text-center w-full py-3 bg-[#4F282B] text-white rounded-full text-xl font-semibold hover:bg-[#000000] transition-all duration-300">
                     Confirm Order
-                </Link>
+                </button>
             </div>
         </div>
 

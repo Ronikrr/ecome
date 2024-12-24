@@ -165,7 +165,7 @@ const Cartsection = () => {
                                             </td>
                                             <td className="text-center border border-[#4f282b]">
                                                 ${item?.price} X {cart[user.id]?.find(
-                                                (itemInCart) => itemInCart.id === item.id
+                                                    (itemInCart) => itemInCart.id === item.id
                                                 )?.quantity || 1}
                                             </td>
                                             <td className="text-center border border-[#4f282b]">
