@@ -60,24 +60,15 @@ const Profilesection = () => {
     };
 
     const handleUpdate = () => {
-        // Retrieve user data list from localStorage
         const userDataList = JSON.parse(localStorage.getItem('userdatalist')) || [];
-
-        // Find the user by ID
-        const userId = profile.userId; // Assuming profile has a unique userId field
+        const userId = profile.userId;
         const updatedUserList = userDataList.map(user =>
             user.userId === userId
-                ? { ...user, ...profile, profileImage: profileImage || user.profileImage } // Update the user's profile
+                ? { ...user, ...profile, profileImage: profileImage || user.profileImage }
                 : user
         );
-
-        // Save the updated list of users back to localStorage
         localStorage.setItem('userdatalist', JSON.stringify(updatedUserList));
-
-        // Update the current user's profile in localStorage
         localStorage.setItem('currentUser', JSON.stringify(profile));
-
-        // Show the success notification after 2 seconds
         setTimeout(() => {
             setShowNotification(true);
         }, 2000);
