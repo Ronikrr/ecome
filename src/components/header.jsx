@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Modeal from "./modeal";
+import Modeal from "./login";
 import Regiter from './register'
 import { Cartcontext } from "./cart/cartcontext";
 import { WishlistContext } from "./wishlist/wishlistcontext";
@@ -196,10 +196,10 @@ const Header = () => {
                     ) : (
 
                         <div className="flex ">
-                            <button className="p-2 bg-[#4f282b] text-white rounded-l-lg border border-[#4f282b] hover:bg-transparent hover:text-[#4f282b] " onClick={openmodel} >Login</button>
-                            {ismodelopen && <Modeal closeModal={closeModal} openmodelrg={openmodelrg} />}
-                            <button className="p-2 bg-[#4f282b] text-white rounded-r-lg border border-[#4f282b] hover:bg-transparent hover:text-[#4f282b]" onClick={openmodelrg} >Regi</button>
-                            {ismodelrgopen && <Regiter closeModalrg={closeModalrg} openmodel={openmodel} />}
+                                <Link className="p-2 bg-[#4f282b] text-white rounded-l-lg border border-[#4f282b] hover:bg-transparent hover:text-[#4f282b] " to={'/login'}  >Login</Link>
+
+                                <Link className="p-2 bg-[#4f282b] text-white rounded-r-lg border border-[#4f282b] hover:bg-transparent hover:text-[#4f282b]" to={'/regi'} >Regi</Link>
+
                         </div>
                     )}
                 </div>

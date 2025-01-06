@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Modeal({ closeModal, openmodelrg }) {
+function Login() {
     const [emailid, setEmail] = useState('')
     const [password, setpassword] = useState('')
     const [error, seterror] = useState('')
     const navigate = useNavigate()
-    const switchtoregister = () => {
-        closeModal();
-        openmodelrg();
-    }
     const isValidEmail = (email) => {
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
@@ -39,7 +35,6 @@ function Modeal({ closeModal, openmodelrg }) {
             localStorage.setItem('accessToken', token);
             localStorage.setItem('currentUser', JSON.stringify({ ...user, token }));
             seterror('login successful')
-            closeModal()
             setTimeout(() => {
                 navigate('/profile')
             }, 2000)
@@ -68,15 +63,14 @@ function Modeal({ closeModal, openmodelrg }) {
                     {error}
                 </div>}
                 <div className="mb-4 register">
-                    <span> if you not <button className='text-blue-500 hover:underline' onClick={switchtoregister} >register</button></span>
+                    <span> if you not <button className='text-blue-500 hover:underline'  >register</button></span>
                 </div>
                 <div className="flex justify-center space-x-3 ">
                     <button className='px-4 py-2 uppercase rounded-full btn_primary' onClick={handleLogin} >submit</button>
-                    <button className='w-full py-2 text-white capitalize bg-red-600 border border-red-600 rounded-full px- p- md:w-3/12 hover:bg-transparent hover:text-red-700' onClick={closeModal} >close</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Modeal
+export default Login

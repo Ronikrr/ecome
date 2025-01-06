@@ -25,7 +25,7 @@ import { WishlistProvider } from './components/wishlist/wishlistcontext';
 import Cartsection from './components/cart/cartsection';
 import Checkoutpage from './components/cart/checkoutpage'
 import ThankYou from './components/thankyou';
-
+import Login from './components/login';
 
 const Layout = ({ children }) => (
   <>
@@ -68,7 +68,6 @@ function App() {
         <Cartprovider>
           <Routes>
             <Route path='/' element={<Layout><Home /></Layout >} />
-            <Route path='/regi' element={< Register />} />
           <Route path='/checkout' element={<Checkoutpage />} />
           <Route path='/thankyou' element={<ThankYou />} />
             <Route path='/profile' element={<Layout> <Profile /></Layout >} />
@@ -86,6 +85,10 @@ function App() {
             <Route path='/shop/:productid' element={<Layout> <Shopview /></Layout>} />
             <Route path='/giftcard' element={<Layout> <Giftcard /></Layout>} />
             <Route path='*' element={< Notfound />} />
+
+
+            <Route path='/login' element={<Login />} />
+            <Route path='/regi' element={< Register />} />
           {userid && <Cartsection userId={userid} />}
             {userid && <WishlistProvider userId={userid} />}
           </Routes>
