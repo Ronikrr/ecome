@@ -65,13 +65,6 @@ const Register = () => {
         }
     };
 
-    // const registerUser = async (userData) => {
-    //     // Add user to the database with 'is_approved' set to false
-    //     await db.collection('users').add({
-    //         ...userData,
-    //         is_approved: false,
-    //     });
-    // };
 
 
     return (

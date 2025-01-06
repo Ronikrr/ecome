@@ -88,7 +88,7 @@ function App() {
 
 
             <Route path='/login' element={<Login />} />
-            <Route path='/regi' element={< Register />} />
+            <Route path='/regi' element={<Register />} />
           {userid && <Cartsection userId={userid} />}
             {userid && <WishlistProvider userId={userid} />}
           </Routes>
