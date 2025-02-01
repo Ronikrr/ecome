@@ -32,7 +32,7 @@ const Login = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:8000/login', {
+            const res = await fetch('http://localhost:8000/api/v1/user/login', {
                 method: 'POST',
                 body: JSON.stringify(formdata),
                 headers: {
@@ -43,7 +43,6 @@ const Login = () => {
             const data = await res.json();
 
             if (res.ok) {
-
                 localStorage.setItem('userToken', data.token);
                 navigate('/');
             } else {
@@ -52,8 +51,7 @@ const Login = () => {
                 setTimeout(() => setShowError(false), 3000);
             }
         } catch (error) {
-            console.error('Error during login:', error);
-            // More descriptive error message
+            console.error('Error during login:', error)
             setError('An error occurred while submitting the form. Please check your network connection or server status.', error);
             setShowError(true);
             setTimeout(() => setShowError(false), 3000);

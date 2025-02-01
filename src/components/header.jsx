@@ -17,6 +17,7 @@ const Header = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [ismodelopen, setopenmodel] = useState(false)
     const [ismodelrgopen, setopenrgmodel] = useState(false)
+    const [islogined, setislogined] = useState(false)
     const toggleMenu = () => {
         setIsExpanded((prev) => !prev);
         console.log("Menu is now", !isExpanded ? "expanded" : "collapsed");
@@ -30,9 +31,13 @@ const Header = () => {
     const userWishlit = user ? wishlist[user.id] || [] : [];
     console.log(userCart)
 
-    const isUserLoginIN = () => {
-        return localStorage.getItem('userToken') ? true : false;
-    }
+
+    useEffect(() => {
+        const isUserLoginIN = () => {
+            return localStorage.getItem('userToken') ? setislogined(true) : setislogined(false);
+        }
+        isUserLoginIN()
+    }, [])
 
 
     const handleLinkClick = (path) => {
@@ -133,7 +138,7 @@ const Header = () => {
                             </button>
                         </li>
                         <li className="flex items-center justify-end space-x-4 md:hidden wishlit full" >
-                            {isUserLoginIN() ? (
+                            {islogined ? (
                                 <>
                                     <Link to="/wishlist" onClick={scrollToTop} className="text-black relative  hover:text-[#4a282b]">
                                         <i class="bi bi-heart text-xl "></i>
@@ -170,7 +175,7 @@ const Header = () => {
                 </nav>
 
                 <div className="items-center justify-end space-x-4 md:flex wishlit md:w-1/12" >
-                    {isUserLoginIN() ? (
+                    {islogined ? (
                         <>
                             <Link to="/wishlist" onClick={scrollToTop} className="text-black relative  hover:text-[#4a282b]">
                                 <i class="bi bi-heart text-xl "></i>

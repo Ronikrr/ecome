@@ -41,7 +41,7 @@ const Register = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:8000/users", {
+            const res = await fetch("http://localhost:8000/api/v1/user", {
                 method: "POST",
                 body: JSON.stringify(formdata),
                 headers: {

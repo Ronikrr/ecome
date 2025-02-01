@@ -74,9 +74,7 @@ const Exploreproduct = () => {
             },
         ],
     };
-   if (error) {
-    return {error}
-   }
+
 
     return (
         <section className='relative py-10 overflow-x-hidden all_product' >

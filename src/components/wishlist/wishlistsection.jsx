@@ -12,7 +12,7 @@ const Wishlistsection = () => {
   const { wishlist, removeformwishlist } = useContext(WishlistContext)
   useEffect(() => {
     setLoading(true);
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("userToken");
     const storeduserprofile = JSON.parse(localStorage.getItem("currentUser"));
     if (!accessToken || !storeduserprofile) {
       navigate("/");
