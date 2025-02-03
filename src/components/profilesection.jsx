@@ -396,115 +396,114 @@ const Profilesection = () => {
                             onChange={handlefilechange}
                         />
                     </div>
+                    <div className="flex flex-col items-center gap-5 lg:flex-row">
 
-                    {/* First Name */}
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="firstname">
-                            First Name:
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            name='name'
-                            value={User?.name}
-                            onChange={handleChange}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
-                    </div>
-                    {/* Username */}
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="username">
-                            phoneNo:
-                        </label>
-                        <input
-                            type="text"
-                            id="phoneNo"
-                            name='phoneNo'
-                            value={User?.phoneNo}
-                            onChange={handleChange}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
-                    </div>
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="username">
-                            username:
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            name='username'
-                            value={User?.username}
-                            onChange={handleChange}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
-                    </div>
-
-                    {/* Email */}
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="emailid">
-                            Email:
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={User?.email}
-                            onChange={handleChange}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="firstname">
+                                First Name:
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name='name'
+                                value={User?.name}
+                                onChange={handleChange}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
+                        {/* Username */}
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="username">
+                                phoneNo:
+                            </label>
+                            <input
+                                type="text"
+                                id="phoneNo"
+                                name='phoneNo'
+                                value={User?.phoneNo}
+                                onChange={handleChange}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="username">
+                                username:
+                            </label>
+                            <input
+                                type="text"
+                                id="username"
+                                name='username'
+                                value={User?.username}
+                                onChange={handleChange}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="emailid">
+                                Email:
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={User?.email}
+                                onChange={handleChange}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
                     </div>
 
-                    {/* Address */}
                     <h3 className="mt-6 mb-2 text-lg font-semibold">Address</h3>
+                    <div className="flex flex-col items-center gap-5 lg:flex-row">
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="street">Street:</label>
+                            <input
+                                type="text"
+                                id="street"
+                                name="street"
+                                value={User?.address?.street}
+                                onChange={(e) => handleChange(e, "street", true)}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
 
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="street">Street:</label>
-                        <input
-                            type="text"
-                            id="street"
-                            name="street"
-                            value={User?.address?.street}
-                            onChange={(e) => handleChange(e, "street", true)}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="city">City:</label>
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value={User?.address?.city}
+                                onChange={(e) => handleChange(e, "city", true)}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
+
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="state">State:</label>
+                            <input
+                                type="text"
+                                id="state"
+                                name="state"
+                                value={User?.address?.state}
+                                onChange={(e) => handleChange(e, "state", true)}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
+
+                        <div className="w-full my-4 md:w-4/12">
+                            <label className="capitalize text-[15px] md:text-[20px]" htmlFor="zip">ZIP Code:</label>
+                            <input
+                                type="text"
+                                id="zip"
+                                name="zip"
+                                value={User?.address?.zip}
+                                onChange={(e) => handleChange(e, "zip", true)}
+                                className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
+                            />
+                        </div>
+
                     </div>
-
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="city">City:</label>
-                        <input
-                            type="text"
-                            id="city"
-                            name="city"
-                            value={User?.address?.city}
-                            onChange={(e) => handleChange(e, "city", true)}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
-                    </div>
-
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="state">State:</label>
-                        <input
-                            type="text"
-                            id="state"
-                            name="state"
-                            value={User?.address?.state}
-                            onChange={(e) => handleChange(e, "state", true)}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
-                    </div>
-
-                    <div className="w-full my-4 md:w-4/12">
-                        <label className="capitalize text-[15px] md:text-[20px]" htmlFor="zip">ZIP Code:</label>
-                        <input
-                            type="text"
-                            id="zip"
-                            name="zip"
-                            value={User?.address?.zip}
-                            onChange={(e) => handleChange(e, "zip", true)}
-                            className="p-2 border-b text-[15px] md:text-[20px] border-[#4f282b] w-full"
-                        />
-                    </div>
-
                     <div className="w-full my-4 md:w-4/12">
                         <label className="capitalize text-[15px] md:text-[20px]" htmlFor="country">Country:</label>
                         <input
