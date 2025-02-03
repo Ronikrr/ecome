@@ -37,7 +37,7 @@ const Header = () => {
             return localStorage.getItem('userToken') ? setislogined(true) : setislogined(false);
         }
         isUserLoginIN()
-    }, [])
+    })
 
 
     const handleLinkClick = (path) => {
