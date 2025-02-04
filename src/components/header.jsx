@@ -7,6 +7,7 @@ import Regiter from './register'
 import { Cartcontext } from "./cart/cartcontext";
 import { WishlistContext } from "./wishlist/wishlistcontext";
 import logo from '../assets/img/logo/download__4_-removebg-preview 1.png'
+import FeedbackMessage from "./successmessage";
 const Header = () => {
     const { cart } = useContext(Cartcontext);
     const { wishlist } = useContext(WishlistContext)
@@ -18,26 +19,70 @@ const Header = () => {
     const [ismodelopen, setopenmodel] = useState(false)
     const [ismodelrgopen, setopenrgmodel] = useState(false)
     const [islogined, setislogined] = useState(false)
+    const [feedback, setfeedback] = useState({ message: '', type: '' })
+
+    const handleClear = () => {
+        setfeedback({ message: '', type: '' })
+    }
     const toggleMenu = () => {
         setIsExpanded((prev) => !prev);
         console.log("Menu is now", !isExpanded ? "expanded" : "collapsed");
     };
     useEffect(() => {
-        const storeduserprofile = JSON.parse(localStorage.getItem("currentUser"));
-        setUser(storeduserprofile);
+        const fetchData = async () => {
+            const adminToken = localStorage.getItem('cosmtictoken');
+            if (!adminToken) {
+                navigate('/');
+                return;
+            }
 
+            try {
+
+                const res = await fetch('http://localhost:8000/api/v1/user/profile', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${adminToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (res.status === 401) {
+                    navigate("/");
+                    return;
+                } else if (res.status === 500) {
+                    setfeedback({
+                        message: `Server error. Please try again later.`,
+                        type: 'error',
+                    });
+                }
+
+                if (!res.ok) {
+                    setfeedback({
+                        message: `Error fetching profile: ${res.status}`,
+                        type: 'error',
+                    });
+                }
+                const data = await res.json();
+                setUser(data.user);
+            } catch (error) {
+                setfeedback({
+                    message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+                    type: 'error',
+                });
+            }
+        };
+
+        fetchData();
     }, [navigate]);
     const userCart = user ? cart[user.id] || [] : [];
     const userWishlit = user ? wishlist[user.id] || [] : [];
-    console.log(userCart)
+
 
 
     useEffect(() => {
-        const isUserLoginIN = () => {
-            return localStorage.getItem('cosmtictoken') ? setislogined(true) : setislogined(false);
-        }
-        isUserLoginIN()
-    })
+        const token = localStorage.getItem("cosmtictoken");
+        setislogined(!!token); // Converts to true if token exists, false if null
+    }, []);
 
 
     const handleLinkClick = (path) => {
@@ -91,6 +136,9 @@ const Header = () => {
     ]
     return (
         <header className="fixed z-50 w-full py-2 bg-white border-b shadow-sm ">
+            {feedback.message && (
+                <FeedbackMessage message={feedback.message} type={feedback.type} onClear={handleClear} />
+            )}
             <div className="container flex items-center justify-between px-4 mx-auto md:px-8">
                 {/* Logo */}
                 <a href="/" className="flex items-center">

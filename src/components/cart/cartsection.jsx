@@ -2,26 +2,68 @@ import React, { useContext, useEffect, useState } from "react";
 import { Cartcontext } from "./cartcontext"; // Ensure this is correctly imported
 import { useNavigate, Link } from "react-router-dom";
 import Loader from "../loader"; // Ensure this loader component is available
+import FeedbackMessage from "../successmessage";
 
 const Cartsection = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     const { cart, removeformcart, increaceQuntity, decreaseQuantity } = useContext(Cartcontext);
 
+    const [feedback, setfeedback] = useState({ message: '', type: '' })
 
+    const handleClear = () => {
+        setfeedback({ message: '', type: '' })
+    }
 
 
     useEffect(() => {
-        const accessToken = localStorage.getItem("accessToken");
-        const storedUserProfile = JSON.parse(localStorage.getItem("currentUser"));
-        if (!accessToken || !storedUserProfile) {
-            navigate("/");
-        }
-        setUser(storedUserProfile);
-        setLoading(false);
+        const fetchData = async () => {
+            const adminToken = localStorage.getItem('cosmtictoken');
+            if (!adminToken) {
+                navigate('/');
+                return;
+            }
+
+            try {
+                setLoading(true);
+                const res = await fetch('http://localhost:8000/api/v1/user/profile', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${adminToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (res.status === 401) {
+                    navigate("/");
+                    return;
+                } else if (res.status === 500) {
+                    setfeedback({
+                        message: `Server error. Please try again later.`,
+                        type: 'error',
+                    });
+                }
+
+                if (!res.ok) {
+                    setfeedback({
+                        message: `Error fetching profile: ${res.status}`,
+                        type: 'error',
+                    });
+                }
+                const data = await res.json();
+                setUser(data.user);
+                setLoading(false);
+            } catch (error) {
+                setfeedback({
+                    message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+                    type: 'error',
+                });
+            }
+        };
+
+        fetchData();
     }, [navigate]);
 
     useEffect(() => {
@@ -45,10 +87,12 @@ const Cartsection = () => {
             try {
                 const products = await Promise.all(productPromises);
                 setProducts(products.filter((product) => product));
-                setError(null);
+
             } catch (error) {
-                console.error("Error fetching products:", error);
-                setError("Error fetching products: " + error.message);
+                setfeedback({
+                    message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+                    type: 'error',
+                });
             } finally {
                 setLoading(false);
             }
@@ -63,16 +107,19 @@ const Cartsection = () => {
             if (!response.ok) throw new Error('Failed to fetch');
             const product = await response.json();
             console.log("Fetched product:", product);
-            setError(null);
             return product || null;
         } catch (error) {
-            console.error('Error fetching product:', error);
-            setError("Error fetching product: " + error.message);
+            setfeedback({
+                message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+                type: 'error',
+            });
             return null;
         }
     };
 
     if (loading) return <Loader />;
+
+
 
     const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -85,10 +132,8 @@ const Cartsection = () => {
                             <span className="text-5xl text-[#4f282b] capitalize prociono-regular leading-none font-semibold md:text-[40px]">
                                 my cart
                             </span>
-                            {error && (
-                                <div className="p-2 mb-4 text-red-500 bg-red-200 border border-red-600 rounded">
-                                    <p style={{ color: "red" }}>{error}</p>
-                                </div>
+                            {feedback.message && (
+                                <FeedbackMessage message={feedback.message} type={feedback.type} onClear={handleClear} />
                             )}
                         </div>
                     </div>
@@ -201,7 +246,7 @@ const Cartsection = () => {
                                         <Link
                                             to={`/checkout?ids=${products.map((item) => item.id).join(",")}&names=${products.map((item) => encodeURIComponent(item.name)).join(",")}&total=${products.reduce(
                                                 (total, item) =>
-                                                    total + item?.price * (cart[user.id]?.find((cartItem) => cartItem.id === item.id)?.quantity || 1),
+                                                    total + item?.price * (cart[user?._id]?.find((cartItem) => cartItem.id === item.id)?.quantity || 1),
                                                 0
                                             )}`}
                                             className="px-6 py-2 uppercase rounded-full btn_primary"

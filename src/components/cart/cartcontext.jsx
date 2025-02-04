@@ -34,27 +34,50 @@ export const Cartprovider = ({ children }) => {
         localStorage.setItem("cosmaticCart", JSON.stringify(updatedcart));
         setcart(updatedcart);
     };
+
     const increaceQuntity = (userid, productid) => {
         setcart((prevcart) => {
+            if (!prevcart) {
+                console.error("Cart data is undefined");
+                return {};
+            }
+
             const updatedcart = { ...prevcart };
             const usercart = updatedcart[userid] || [];
+
+            if (!Array.isArray(usercart)) {
+                console.error("User cart is not an array:", usercart);
+                return updatedcart;
+            }
+
             const productIndex = usercart.findIndex((item) => item.id === productid);
-            if (productIndex > -1) {
-                const updateproduct = {
-                    ...usercart[productIndex],
-                    quantity: usercart[productIndex].quantity + 1,
-                };
-                const updatedusercart = [...usercart];
-                updatedusercart[productIndex] = updateproduct;
-                updatedcart[userid] = updatedusercart;
-                localStorage.setItem("cosmaticCart", JSON.stringify(updatedcart));
+            if (productIndex === -1) {
+                console.error("Product not found in cart for user:", userid);
+                return updatedcart;
+            }
+
+            const updateproduct = {
+                ...usercart[productIndex],
+                quantity: (usercart[productIndex].quantity || 0) + 1,
+            };
+
+            const updatedusercart = [...usercart];
+            updatedusercart[productIndex] = updateproduct;
+            updatedcart[userid] = updatedusercart;
+
+            // Store the updated cart in localStorage
+            localStorage.setItem("cosmaticCart", JSON.stringify(updatedcart));
+
+            // Ensure calculateCartTotal is defined before calling
+            if (typeof calculateCartTotal === "function") {
                 calculateCartTotal(updatedcart);
             } else {
-                console.error("Product not found in cart for user:", userid);
+                console.error("calculateCartTotal is not defined");
             }
+
+            return updatedcart;
         });
     };
-
 
     const decreaseQuantity = (userid, productid) => {
         setcart((prevcart) => {
