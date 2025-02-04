@@ -2,24 +2,68 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { WishlistContext } from './wishlistcontext';
 import Loader from '../loader';
+import FeedbackMessage from '../successmessage';
 
 const Wishlistsection = () => {
   const [user, setuser] = useState(null);
-  const [error, seterror] = useState(false);
   const [products, setproducts] = useState([])
   const [loading, setLoading] = useState(false);
+  const [feedback, setfeedback] = useState({ message: '', type: '' })
+
+  const handleClear = () => {
+    setfeedback({ message: '', type: '' })
+  }
   const navigate = useNavigate();
   const { wishlist, removeformwishlist } = useContext(WishlistContext)
   useEffect(() => {
-    setLoading(true);
-    const accessToken = localStorage.getItem("userToken");
-    const storeduserprofile = JSON.parse(localStorage.getItem("currentUser"));
-    if (!accessToken || !storeduserprofile) {
-      navigate("/");
-    }
-    setuser(storeduserprofile);
-    setLoading(false);
+    const fetchData = async () => {
+      const adminToken = localStorage.getItem('cosmtictoken');
+      if (!adminToken) {
+        navigate('/');
+        return;
+      }
+
+      try {
+
+        setLoading(true);
+        const res = await fetch('http://localhost:8000/api/v1/user/profile', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (res.status === 401) {
+          navigate("/");
+          return;
+        } else if (res.status === 500) {
+          setfeedback({
+            message: `Server error. Please try again later.`,
+            type: 'error',
+          });
+        }
+
+        if (!res.ok) {
+          setfeedback({
+            message: `Error fetching profile: ${res.status}`,
+            type: 'error',
+          });
+        }
+        const data = await res.json();
+        setuser(data.user);
+        setLoading(false);
+      } catch (error) {
+        setfeedback({
+          message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+          type: 'error',
+        });
+      }
+    };
+
+    fetchData();
   }, [navigate]);
+
   useEffect(() => {
     const fetchProductData = async () => {
       if (!user) return;
@@ -32,10 +76,12 @@ const Wishlistsection = () => {
       try {
         setLoading(true);
         const products = await Promise.all(productPromises);
-        setproducts(products.filter((product) => product)); // Filter out any null values
-        seterror(null);
+        setproducts(products.filter((product) => product)); // Filter 
       } catch (error) {
-        seterror("Error fetching products: " + error.message);
+        setfeedback({
+          message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+          type: 'error',
+        });
       }
       finally {
         setLoading(false);
@@ -52,11 +98,14 @@ const Wishlistsection = () => {
       if (!response.ok) throw new Error('Failed to fetch');
       const product = await response.json();
       console.log("Fetched product:", product);
-      seterror(null);
+
       return product || null;
     } catch (error) {
       console.error('Error fetching product:', error);
-      seterror("Error fetching product: " + error.message);
+      setfeedback({
+        message: `Failed to add lead. Please try again.${error.response ? error.response.data : error.message}`,
+        type: 'error',
+      });
       return null;
     }
     finally {
@@ -73,11 +122,9 @@ const Wishlistsection = () => {
             <span className="text-5xl text-[#4f282b] capitalize prociono-regular leading-none font-semibold md:text-[40px]">
               my wishlist
             </span>
-            {error &&
-              <div className="p-2 mb-4 text-red-500 bg-red-200 border border-red-600 rounded">
-                <p style={{ color: "red" }}>{error}</p>
-              </div>
-            }
+            {feedback.message && (
+              <FeedbackMessage message={feedback.message} type={feedback.type} onClear={handleClear} />
+            )}
           </div>
         </div>
         <div className="w-full mt-10">

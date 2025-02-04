@@ -34,7 +34,7 @@ const Header = () => {
 
     useEffect(() => {
         const isUserLoginIN = () => {
-            return localStorage.getItem('userToken') ? setislogined(true) : setislogined(false);
+            return localStorage.getItem('cosmtictoken') ? setislogined(true) : setislogined(false);
         }
         isUserLoginIN()
     })
@@ -151,11 +151,12 @@ const Header = () => {
 
                                     <Link to="/cart" onClick={scrollToTop} className="text-black  relative hover:text-[#4a282b]">
                                         <i className="text-xl bi bi-bag "></i>
-                                        {userCart?.length === 0 ? ('') : (
+                                        {userCart?.length === 0 && (
                                             <div className="absolute bg-red-600 w-[15px] h-[15px] text-white text-[11px] rounded-full top-0 -right-[5px] flex justify-center items-center ">
                                                 <span> {userCart?.length || 0} </span>
                                             </div>
-                                        )}
+                                        )
+                                        }
                                     </Link>
                                     <Link to='/profile' onClick={scrollToTop} className="text-black  hover:text-[#4a282b]">
                                         <i class="bi bi-person text-xl "></i>
