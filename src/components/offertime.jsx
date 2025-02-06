@@ -4,14 +4,20 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import Loader from './loader';
+import FeedbackMessage from './successmessage';
 
-const targetDate = new Date("2024-12-15T00:00:00Z");
+const targetDate = new Date("2025-04-03T00:00:00Z");
 const Offertime = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [remainingTime, setRemainingTime] = useState(targetDate ? calculateTimeLeft(targetDate) : { days: 0, hours: 0, minutes: 0, seconds: 0 });
 
+    const [remainingTime, setRemainingTime] = useState(targetDate ? calculateTimeLeft(targetDate) : { days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [feedback, setfeedback] = useState({ message: '', type: '' })
+
+    const handleClear = () => {
+        setfeedback({ message: '', type: '' })
+    }
     // Function to calculate time left
     function calculateTimeLeft(targetDate) {
         const now = new Date();
@@ -49,14 +55,19 @@ const Offertime = () => {
                 const validProducts = data.filter((prod) => prod && prod.id).slice(0, 4);
                 setProducts(validProducts);
             } catch (err) {
-                setError(err.message);
+                setfeedback({
+                    message: `Failed to add lead. Please try again.${err.response ? err.response.data : err.message}`,
+                    type: 'error',
+                });
             } finally {
                 setLoading(false);
             }
         };
         fetchData();
     }, []);
-
+    if (!products) {
+        return <Loader />
+    }
     const settings = {
         margin: 10,
         dots: false,
@@ -72,6 +83,9 @@ const Offertime = () => {
 
     return (
         <section className="offertime">
+            {feedback.message && (
+                <FeedbackMessage message={feedback.message} type={feedback.type} onClear={handleClear} />
+            )}
             <div className="flex flex-col items-center w-full md:flex-row">
                 <div className="w-full md:w-6/12 text-center bg-[#4F282B]">
                     <div className="container mx-auto">
@@ -112,11 +126,7 @@ const Offertime = () => {
                 <div className="w-full md:w-6/12 text-center bg-[#FCEADE]">
                     <div className="container mx-auto">
                         <div className="flex flex-col justify-center w-full py-[62px]">
-                            {loading ? (
-                                <div>Loading...</div>
-                            ) : error ? (
-                                <div>Error: {error}</div>
-                            ) : (
+
                                 <Slider {...settings}>
                                     {products.map((item) => (
                                         <Link to={`/shop/${item.id}`} key={item.id} className="flex flex-col items-center justify-center w-full item not_flex">
@@ -125,7 +135,7 @@ const Offertime = () => {
                                         </Link>
                                     ))}
                                 </Slider>
-                            )}
+
                         </div>
                     </div>
                 </div>

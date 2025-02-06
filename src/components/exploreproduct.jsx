@@ -3,13 +3,19 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import FeedbackMessage from './successmessage';
+import Loader from './loader';
 
 
 
 const Exploreproduct = () => {
     const [products, setProducts] = useState([]);
+    const [feedback, setfeedback] = useState({ message: '', type: '' })
 
-    const [error, setError] = useState(null);
+    const handleClear = () => {
+        setfeedback({ message: '', type: '' })
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -21,7 +27,10 @@ const Exploreproduct = () => {
                 const validProducts = data.filter((prod) => prod && prod.id).slice(0, 4);
                 setProducts(validProducts);
             } catch (err) {
-                setError(err.message);
+                setfeedback({
+                    message: `Failed to add lead. Please try again.${err.response ? err.response.data : err.message}`,
+                    type: 'error',
+                });
             }
         };
         fetchData();
@@ -75,9 +84,14 @@ const Exploreproduct = () => {
         ],
     };
 
-
+    if (!products) {
+        return <Loader />
+    }
     return (
         <section className='relative py-10 overflow-x-hidden all_product' >
+            {feedback.message && (
+                <FeedbackMessage message={feedback.message} type={feedback.type} onClear={handleClear} />
+            )}
             <div className="container mx-auto ">
                 <div className="z-10 flex flex-col w-full space-y-10 text-sm text-center small_head ">
                     <span className='text-xl font-semibold capitalize md:text-lg text-[#4f282b]' >Clinically Proven!</span>
